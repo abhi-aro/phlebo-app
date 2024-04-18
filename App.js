@@ -1,45 +1,53 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useEffect, useState } from "react";
+import { SafeAreaView } from "react-native";
 
-import HomeScreen from "./components/Home/HomeScreen";
-import WelcomeScreen from "./components/Welcome/WelcomeScreen";
+import { Provider } from "react-redux";
+import store from "./components/redux/store/store";
 
-import { getAsyncStorage, setAsyncStorage } from "./utils/AsyncStorage";
+import Home from "./components/pages/Home/Home";
+import Welcome from "./components/pages/Welcome/Welcome";
+
+import useOnboardingStatus from "./components/tools/hooks/useOnboardingStatus";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-	const [isFirstLoad, setIsFirstLoad] = useState(null);
+	return (
+		<Provider store={store}>
+			<AppComponent />
+		</Provider>
+	);
+}
 
-	useEffect(() => {
-		getAsyncStorage("firstLoad")
-			.then((value) => {
-				if (value) {
-					setIsFirstLoad(false);
-				} else {
-					setIsFirstLoad(true);
-					setAsyncStorage("firstLoad", true);
-				}
-			})
-			.catch((err) => {
-				setIsFirstLoad(true);
-				setAsyncStorage("firstLoad", true);
-			});
-	}, []);
-
-	if (isFirstLoad === null) return <></>;
+function AppComponent() {
+	const { isUserOnboarded, isLoading } = useOnboardingStatus();
+	if (isUserOnboarded === null) return <></>;
 
 	return (
-		<NavigationContainer>
-			<Stack.Navigator>
-				{isFirstLoad === false ? (
-					<Stack.Screen name="Home" component={HomeScreen} />
-				) : null}
-				{isFirstLoad === true ? (
-					<Stack.Screen name="Welcome" component={WelcomeScreen} />
-				) : null}
-			</Stack.Navigator>
-		</NavigationContainer>
+		<SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+			<NavigationContainer>
+				<Stack.Navigator>
+					{isUserOnboarded === true ? (
+						<Stack.Screen
+							name="Home"
+							component={Home}
+							options={{
+								headerShown: false,
+							}}
+						/>
+					) : null}
+					{isUserOnboarded === false ? (
+						<Stack.Screen
+							name="Welcome"
+							component={Welcome}
+							options={{
+								headerShown: false,
+							}}
+						/>
+					) : null}
+				</Stack.Navigator>
+			</NavigationContainer>
+		</SafeAreaView>
 	);
 }

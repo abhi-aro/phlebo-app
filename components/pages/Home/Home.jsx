@@ -1,18 +1,16 @@
 import React from "react";
 import { Button, Text, View } from "react-native";
-import { removeAsyncStorage } from "../../utils/AsyncStorage";
+import useOnboardingStatus from "../../tools/hooks/useOnboardingStatus";
 
 const HomeScreen = () => {
-	const clearStorage = () => {
-		removeAsyncStorage("firstLoad");
-	};
+	const { removeOnboarding } = useOnboardingStatus();
 
 	return (
 		<View
 			style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
 		>
 			<Text>Welcome back!</Text>
-			<Button onPress={clearStorage} title="clear storage" />
+			<Button onPress={removeOnboarding} title="logout" />
 		</View>
 	);
 };
