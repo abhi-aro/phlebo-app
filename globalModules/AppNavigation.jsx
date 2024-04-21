@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { useEffect, useState } from "react";
 
-import Home from "../components/pages/Home/Home";
-import Onboarding from "../components/pages/Onboarding/Onboarding";
+import Home from "@pages/Home/Home";
+import Onboarding from "@pages/Onboarding/Onboarding";
 
-import useOnboardingStatus from "../components/tools/hooks/useOnboardingStatus";
+import useOnboardingStatus from "@hooks/useOnboardingStatus";
 
 const Stack = createNativeStackNavigator();
 

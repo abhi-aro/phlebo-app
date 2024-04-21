@@ -1,28 +1,26 @@
 import React from "react";
 import {
-  Animated,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  useWindowDimensions,
+	Animated,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+	useWindowDimensions,
 } from "react-native";
 
+import globalStyles, { COLORS } from "@globalModules/GlobalStyles";
 import useLanguageModel from "@hooks/useLanguageModel";
 
-export default function Paginator({ pageData, data, scrollX, scrollTo }) {
+const pageData = ["Onboarding", "slides"];
+
+export default function Paginator({ data, scrollX, scrollTo }) {
 	const { width } = useWindowDimensions();
 	const { pageContent } = useLanguageModel(pageData);
 
 	return (
 		<View style={styles.paginatorContainer}>
-			<TouchableOpacity
-				style={styles.paginatorButtonContainer}
-				onPress={() => scrollTo(-1)}
-			>
-				<Text style={styles.paginatorButton}>
-					{pageContent.backText}
-				</Text>
+			<TouchableOpacity onPress={() => scrollTo(-1)}>
+				<Text style={styles.backButton}>{pageContent.backText}</Text>
 			</TouchableOpacity>
 			<View style={{ flexDirection: "row" }}>
 				{data.map((_, i) => {
@@ -46,13 +44,8 @@ export default function Paginator({ pageData, data, scrollX, scrollTo }) {
 					);
 				})}
 			</View>
-			<TouchableOpacity
-				style={styles.paginatorButtonContainer}
-				onPress={() => scrollTo(1)}
-			>
-				<Text style={[styles.paginatorButton, styles.nextButton]}>
-					{pageContent.nextText}
-				</Text>
+			<TouchableOpacity onPress={() => scrollTo(1)}>
+				<Text style={[styles.nextButton]}>{pageContent.nextText}</Text>
 			</TouchableOpacity>
 		</View>
 	);
@@ -64,7 +57,7 @@ const styles = StyleSheet.create({
 		width: 18,
 
 		borderRadius: 4,
-		backgroundColor: "#28A891",
+		backgroundColor: COLORS.primaryBackground,
 		marginHorizontal: 4,
 	},
 
@@ -79,27 +72,13 @@ const styles = StyleSheet.create({
 		marginBottom: 40,
 	},
 
-	paginatorButtonContainer: {
-		width: 88,
-		height: 42,
-	},
-
-	paginatorButton: {
-		fontSize: 16,
-		lineHeight: 16,
-		fontWeight: "500",
-		textAlign: "center",
-
-		color: "#ADABAB",
-		backgroundColor: "#F2F2F2",
-
-		borderRadius: 12,
-		paddingHorizontal: 24,
-		paddingVertical: 12,
+	backButton: {
+		...globalStyles.textSecondary,
+		...globalStyles.buttonSecondary,
 	},
 
 	nextButton: {
-		color: "#ffffff",
-		backgroundColor: "#28A891",
+		...globalStyles.textPrimary,
+		...globalStyles.buttonPrimary,
 	},
 });

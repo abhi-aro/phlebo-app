@@ -1,17 +1,17 @@
 import React, { useRef, useState } from "react";
 import {
-  Animated,
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+	Animated,
+	FlatList,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
 } from "react-native";
 
 import OnboardingSlide from "./OnboardingSlide";
 import Paginator from "./Paginator";
 
-//! Warning do not move this to a different line
+import globalStyles from "@globalModules/GlobalStyles";
 import useLanguageModel from "@hooks/useLanguageModel";
 
 const pageData = ["Onboarding", "slides"];
@@ -19,7 +19,6 @@ const pageData = ["Onboarding", "slides"];
 const Onboarding = () => {
 	const { pageContent } = useLanguageModel(pageData);
 
-	const [slides, setSlides] = useState(pageContent.slidesList);
 	const [currentIndex, setCurrentIndex] = useState(0);
 
 	const slidesRef = useRef(null);
@@ -32,7 +31,7 @@ const Onboarding = () => {
 	const skip = () => {};
 
 	const scrollTo = (scrollBy = 1) => {
-		const lastSlide = slides.length - 1;
+		const lastSlide = pageContent.slidesList.length - 1;
 
 		if (scrollBy < 0 && currentIndex > 0) {
 			slidesRef.current.scrollToIndex({ index: currentIndex + scrollBy });
@@ -48,22 +47,18 @@ const Onboarding = () => {
 	};
 
 	return (
-		<View
-			style={{
-				flex: 1,
-				justifyContent: "center",
-				alignItems: "center",
-				backgroundColor: "white",
-			}}
-		>
+		<View style={styles.onboardingView}>
 			<TouchableOpacity
 				style={[
 					styles.skipButtonContainer,
 					{
-						opacity: currentIndex === slides.length - 1 ? 0 : 1,
+						opacity:
+							currentIndex === pageContent.slidesList.length - 1
+								? 0
+								: 1,
 					},
 				]}
-				disabled={currentIndex === slides.length - 1}
+				disabled={currentIndex === pageContent.slidesList.length - 1}
 				onPress={skip}
 			>
 				<Text style={styles.skipButton}>{pageContent.skipText}</Text>
@@ -71,7 +66,7 @@ const Onboarding = () => {
 
 			<View style={{ flex: 3 }}>
 				<FlatList
-					data={slides}
+					data={pageContent.slidesList}
 					renderItem={({ item }) => <OnboardingSlide data={item} />}
 					keyExtractor={(item) => item.id}
 					horizontal
@@ -92,8 +87,7 @@ const Onboarding = () => {
 			</View>
 
 			<Paginator
-				pageData={pageData}
-				data={slides}
+				data={pageContent.slidesList}
 				scrollX={scrollX}
 				scrollTo={scrollTo}
 			/>
@@ -102,27 +96,21 @@ const Onboarding = () => {
 };
 
 const styles = StyleSheet.create({
+	onboardingView: {
+		...globalStyles.centered,
+		...globalStyles.whiteBG,
+	},
+
 	skipButtonContainer: {
 		alignSelf: "flex-end",
 
 		marginTop: 40,
 		marginRight: 32,
-
-		width: "auto",
-		height: 32,
 	},
 
 	skipButton: {
-		fontSize: 12,
-		lineHeight: 12,
-		fontWeight: "400",
-		color: "#666666",
-		textAlign: "center",
-
-		backgroundColor: "#ebebeb",
-		borderRadius: 12,
-		paddingHorizontal: 24,
-		paddingVertical: 8,
+		...globalStyles.textTernary,
+		...globalStyles.buttonTernary,
 	},
 });
 

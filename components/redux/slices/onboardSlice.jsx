@@ -1,8 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import {
-	getAsyncStorage,
-	setAsyncStorage,
-} from "../../tools/utils/AsyncStorage";
+import { getAsyncStorage, setAsyncStorage } from "@utils/AsyncStorage";
 
 export const fetchOnboardStatus = createAsyncThunk(
 	"onboard/fetchOnboardStatus",

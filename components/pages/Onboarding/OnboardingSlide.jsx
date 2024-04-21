@@ -1,11 +1,13 @@
 import React from "react";
 import {
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  useWindowDimensions,
+	Image,
+	StyleSheet,
+	Text,
+	View,
+	useWindowDimensions,
 } from "react-native";
+
+import globalStyles from "@globalModules/GlobalStyles";
 
 const OnboardingSlide = ({ data }) => {
 	const { width } = useWindowDimensions();
@@ -14,7 +16,7 @@ const OnboardingSlide = ({ data }) => {
 		<View style={[styles.container, { width }]}>
 			<Image
 				source={data.image}
-				style={[styles.image, { width, resizeMode: "contain" }]}
+				style={[{ flex: 0.7 }, { width, resizeMode: "contain" }]}
 			/>
 
 			<View style={{ flex: 0.3 }}>
@@ -26,13 +28,7 @@ const OnboardingSlide = ({ data }) => {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-	},
-	image: {
-		flex: 0.7,
-		justifyContent: "center",
+		...globalStyles.centered,
 	},
 	title: {
 		marginHorizontal: 32,

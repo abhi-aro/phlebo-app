@@ -1,6 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import onboardReducer from "../slices/onboardSlice";
-import userDataReducer from "../slices/userDataSlice";
+
+import onboardReducer from "@redux/slices/onboardSlice";
+import userDataReducer from "@redux/slices/userDataSlice";
 
 const rootReducer = combineReducers({
 	onboard: onboardReducer,
