@@ -28,28 +28,12 @@ const globalStyles = StyleSheet.create({
 		backgroundColor: "white",
 	},
 
-	textPrimary: {
+	buttonPrimary: {
 		fontSize: 16,
 		lineHeight: 16,
 		fontWeight: "500",
 		color: COLORS.primaryColor,
-	},
 
-	textSecondary: {
-		fontSize: 16,
-		lineHeight: 16,
-		fontWeight: "500",
-		color: COLORS.secondaryColor,
-	},
-
-	textTernary: {
-		fontSize: 12,
-		lineHeight: 12,
-		fontWeight: "400",
-		color: COLORS.ternaryColor,
-	},
-
-	buttonPrimary: {
 		borderRadius: 12,
 		paddingVertical: 12,
 		paddingHorizontal: 24,
@@ -57,6 +41,11 @@ const globalStyles = StyleSheet.create({
 	},
 
 	buttonSecondary: {
+		fontSize: 16,
+		lineHeight: 16,
+		fontWeight: "500",
+		color: COLORS.secondaryColor,
+
 		borderRadius: 12,
 		paddingVertical: 12,
 		paddingHorizontal: 24,
@@ -64,6 +53,11 @@ const globalStyles = StyleSheet.create({
 	},
 
 	buttonTernary: {
+		fontSize: 12,
+		lineHeight: 12,
+		fontWeight: "400",
+		color: COLORS.ternaryColor,
+
 		borderRadius: 12,
 		paddingVertical: 8,
 		paddingHorizontal: 24,

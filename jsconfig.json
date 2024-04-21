@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@assets/*": ["assets/*"],
+      "@redux/*": ["components/redux/*"],
+      "@utils/*": ["components/tools/utils/*"],
+      "@hooks/*": ["components/tools/hooks/*"],
+      "@globalModules/*": ["globalModules/*"],
+      "@pages/*": ["components/pages/*"]
+      // Add other paths as needed
+    }
+  },
+  "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
+}

@@ -73,12 +73,10 @@ const styles = StyleSheet.create({
 	},
 
 	backButton: {
-		...globalStyles.textSecondary,
 		...globalStyles.buttonSecondary,
 	},
 
 	nextButton: {
-		...globalStyles.textPrimary,
 		...globalStyles.buttonPrimary,
 	},
 });

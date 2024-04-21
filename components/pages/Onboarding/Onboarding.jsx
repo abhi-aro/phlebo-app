@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
 	Animated,
 	FlatList,
@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
 	},
 
 	skipButton: {
-		...globalStyles.textTernary,
 		...globalStyles.buttonTernary,
 	},
 });
