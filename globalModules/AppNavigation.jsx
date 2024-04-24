@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import useOnboardingStatus from "@hooks/useOnboardingStatus";
 
@@ -31,6 +31,7 @@ import {
 import * as SplashScreen from "expo-splash-screen";
 
 const Stack = createNativeStackNavigator();
+SplashScreen.preventAutoHideAsync();
 
 export default function AppNavigation() {
 	const { isUserOnboarded } = useOnboardingStatus();
@@ -57,17 +58,17 @@ export default function AppNavigation() {
 		Poppins_900Black_Italic,
 	});
 
-	const onLayoutRootView = useCallback(async () => {
-		if (fontsLoaded || fontError) {
-			await SplashScreen.hideAsync();
-		}
-	}, [fontsLoaded, fontError]);
-
 	useEffect(() => {
-		if (isUserOnboarded !== null) {
-			setInitialRoute(isUserOnboarded ? "Home" : "Onboarding");
-		}
-	}, [isUserOnboarded]);
+		(async () => {
+			if (isUserOnboarded !== null) {
+				setInitialRoute(isUserOnboarded ? "Home" : "Onboarding");
+
+				if (fontsLoaded || fontError) {
+					SplashScreen.hideAsync();
+				}
+			}
+		})();
+	}, [isUserOnboarded, fontsLoaded, fontError]);
 
 	if (!fontsLoaded && !fontError && initialRoute === null) return null;
 
