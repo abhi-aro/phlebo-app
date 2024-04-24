@@ -24,7 +24,7 @@ const globalStyles = StyleSheet.create({
 		alignItems: "center",
 	},
 
-	whiteBG: {
+	pageBG: {
 		backgroundColor: "white",
 	},
 

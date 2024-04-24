@@ -1,9 +1,10 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import {
 	fetchOnboardStatus,
 	setOnboardStatus,
 } from "@redux/slices/onboardSlice";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 const useOnboardingStatus = () => {
 	const { isUserOnboarded, isLoading } = useSelector(

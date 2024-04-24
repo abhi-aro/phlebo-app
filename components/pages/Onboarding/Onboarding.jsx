@@ -13,10 +13,12 @@ import Paginator from "./Paginator";
 
 import globalStyles from "@globalModules/GlobalStyles";
 import useLanguageModel from "@hooks/useLanguageModel";
+import { useNavigation } from "@react-navigation/native";
 
 const pageData = ["Onboarding", "slides"];
 
 const Onboarding = () => {
+	const navigation = useNavigation();
 	const { pageContent } = useLanguageModel(pageData);
 
 	const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,7 +30,9 @@ const Onboarding = () => {
 	}).current;
 	const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
-	const skip = () => {};
+	const skip = () => {
+		navigation.navigate("language");
+	};
 
 	const scrollTo = (scrollBy = 1) => {
 		const lastSlide = pageContent.slidesList.length - 1;
@@ -98,7 +102,7 @@ const Onboarding = () => {
 const styles = StyleSheet.create({
 	onboardingView: {
 		...globalStyles.centered,
-		...globalStyles.whiteBG,
+		...globalStyles.pageBG,
 	},
 
 	skipButtonContainer: {
