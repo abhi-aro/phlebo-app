@@ -8,9 +8,15 @@ const COLORS = {
 	primaryColor: "#ffffff",
 	secondaryColor: "#ADABAB",
 	ternaryColor: "#666666",
+
+	textColor: "#333333",
 };
 
-export { COLORS };
+const SIZES = {
+	screenPadding: 18,
+};
+
+export { COLORS, SIZES };
 
 const globalStyles = StyleSheet.create({
 	body: {
@@ -29,9 +35,8 @@ const globalStyles = StyleSheet.create({
 	},
 
 	buttonPrimary: {
+		fontFamily: "Poppins_500Medium",
 		fontSize: 16,
-		lineHeight: 16,
-		fontWeight: "500",
 		color: COLORS.primaryColor,
 
 		borderRadius: 12,
@@ -41,9 +46,8 @@ const globalStyles = StyleSheet.create({
 	},
 
 	buttonSecondary: {
+		fontFamily: "Poppins_500Medium",
 		fontSize: 16,
-		lineHeight: 16,
-		fontWeight: "500",
 		color: COLORS.secondaryColor,
 
 		borderRadius: 12,
@@ -53,9 +57,8 @@ const globalStyles = StyleSheet.create({
 	},
 
 	buttonTernary: {
+		fontFamily: "Poppins_400Regular",
 		fontSize: 12,
-		lineHeight: 12,
-		fontWeight: "400",
 		color: COLORS.ternaryColor,
 
 		borderRadius: 12,

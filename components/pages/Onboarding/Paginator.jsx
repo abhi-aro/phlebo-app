@@ -1,4 +1,5 @@
-import React from "react";
+import globalStyles, { COLORS } from "@globalModules/GlobalStyles";
+import useLanguageModel, { pageData } from "@hooks/useLanguageModel";
 import {
 	Animated,
 	StyleSheet,
@@ -8,14 +9,9 @@ import {
 	useWindowDimensions,
 } from "react-native";
 
-import globalStyles, { COLORS } from "@globalModules/GlobalStyles";
-import useLanguageModel from "@hooks/useLanguageModel";
-
-const pageData = ["Onboarding", "slides"];
-
 export default function Paginator({ data, scrollX, scrollTo }) {
 	const { width } = useWindowDimensions();
-	const { pageContent } = useLanguageModel(pageData);
+	const { pageContent } = useLanguageModel(pageData.paginator);
 
 	return (
 		<View style={styles.paginatorContainer}>

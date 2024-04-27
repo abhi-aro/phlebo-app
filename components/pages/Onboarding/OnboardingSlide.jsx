@@ -1,4 +1,4 @@
-import React from "react";
+import globalStyles, { COLORS } from "@globalModules/GlobalStyles";
 import {
 	Image,
 	StyleSheet,
@@ -6,8 +6,6 @@ import {
 	View,
 	useWindowDimensions,
 } from "react-native";
-
-import globalStyles from "@globalModules/GlobalStyles";
 
 const OnboardingSlide = ({ data }) => {
 	const { width } = useWindowDimensions();
@@ -33,9 +31,9 @@ const styles = StyleSheet.create({
 	title: {
 		marginHorizontal: 32,
 
-		fontWeight: "600",
+		fontFamily: "Poppins_600SemiBold",
 		fontSize: 18,
-		color: "#333333",
+		color: COLORS.textColor,
 		textAlign: "left",
 	},
 });
