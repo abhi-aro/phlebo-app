@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import globalStyles, { COLORS, SIZES } from "@globalModules/GlobalStyles";
 import useLanguageModel, { pageData } from "@hooks/useLanguageModel";
+import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import {
 	Platform,
@@ -16,6 +17,8 @@ const LanugageSelection = () => {
 	const { pageContent, languageList } = useLanguageModel(pageData.language);
 	const { language } = useSelector((state) => state.userData);
 
+	const navigation = useNavigation();
+
 	const [selected, setSelected] = useState(language);
 	const [data, setData] = useState(pageContent);
 	const [languages, setLanguages] = useState(languageList);
@@ -26,7 +29,7 @@ const LanugageSelection = () => {
 	}, [pageContent]);
 
 	const chooseLanguage = () => {
-		console.log(selected);
+		navigation.navigate("login");
 	};
 
 	return (

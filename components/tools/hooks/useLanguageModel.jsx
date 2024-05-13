@@ -32,6 +32,7 @@ export const pageData = {
 	onboarding: ["Onboarding", "slides"],
 	paginator: ["Onboarding", "slides"],
 	language: ["languageSelection"],
+	login: ["login"],
 };
 
 export default useLanguageModel;

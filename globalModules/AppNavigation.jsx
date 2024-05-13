@@ -1,12 +1,3 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useEffect, useState } from "react";
-
-import useOnboardingStatus from "@hooks/useOnboardingStatus";
-
-import Home from "@pages/Home/Home";
-import LanugageSelection from "@pages/Onboarding/LanugageSelection";
-import Onboarding from "@pages/Onboarding/Onboarding";
-
 import {
 	Poppins_100Thin,
 	Poppins_100Thin_Italic,
@@ -28,7 +19,15 @@ import {
 	Poppins_900Black_Italic,
 	useFonts,
 } from "@expo-google-fonts/poppins";
+
+import useOnboardingStatus from "@hooks/useOnboardingStatus";
+import LoginScreen from "@pages/Auth/Login";
+import Home from "@pages/Home/Home";
+import LanugageSelection from "@pages/Onboarding/LanugageSelection";
+import Onboarding from "@pages/Onboarding/Onboarding";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as SplashScreen from "expo-splash-screen";
+import { useEffect, useState } from "react";
 
 const Stack = createNativeStackNavigator();
 SplashScreen.preventAutoHideAsync();
@@ -91,6 +90,13 @@ export default function AppNavigation() {
 			<Stack.Screen
 				name="language"
 				component={LanugageSelection}
+				options={{
+					headerShown: false,
+				}}
+			/>
+			<Stack.Screen
+				name="login"
+				component={LoginScreen}
 				options={{
 					headerShown: false,
 				}}

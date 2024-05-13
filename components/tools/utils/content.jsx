@@ -35,6 +35,17 @@ export default {
 			secondaryTitle: "भाषा चुनें",
 			buttonText: "Continue",
 		},
+		login: {
+			pageTitle: "Let's get started",
+			pageImage: require("@assets/login/login.png"),
+			mobilePlaceholder: "Your mobile number",
+			changeNumberText: "Change number",
+			otpPlaceholder: "OTP",
+			resendOTPTText: "Resend OTP",
+			sentButtonText: "Send OTP",
+			verifyButtonText: "Verify OTP",
+			verifiedButtonText: "Verified",
+		},
 	},
 	hindi: {
 		languageName: "हिंदी",
